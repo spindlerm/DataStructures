@@ -7,14 +7,14 @@ namespace myTests
     public class TestMaxHeap
     {
         [Fact]
-        public void GivenEmptyMAxHeap_WhenInvaidSizeSet_ThrowInvalidHeapSizeException()
+        public void GivenEmptyMaxHeap_WhenInvaidSizeSet_ThrowInvalidHeapSizeException()
         {
             MaxHeap h = null;
             Assert.Throws<InvalidHeapSizeException>(() =>h = new MaxHeap(0));
         }
 
         [Fact]
-        public void GivenEmptyMAxHeap_WhenCallCount_Return0()
+        public void GivenEmptyMaxHeap_WhenCallCount_Return0()
         {
             MaxHeap h = new MaxHeap(3);
             Assert.Equal(0, h.Count);
@@ -61,6 +61,14 @@ namespace myTests
             h.Insert(20);
             h.Insert(30);
             Assert.Equal(30, h.GetMax());
+        }
+
+         [Fact]
+        public void GivenEmptyMaxHeap_WhenConstructedFromAList_ThenValidMaxHeap()
+        {
+            MaxHeap h = new MaxHeap(new int[] {4,1,8,5,2,7,3,9,10});
+            
+            Assert.Equal(10, h.GetMax());
         }
     }
 
@@ -121,6 +129,14 @@ namespace myTests
             h.Insert(20);
             h.Insert(1);
             h.Insert(10);
+            Assert.Equal(1, h.GetMin());
+        }
+
+        [Fact]
+        public void GivenEmptyMinHeap_WhenConstructedFromAList_ThenValidMinHeap()
+        {
+            MinHeap h = new MinHeap(new int[] {10,2,3,4,9,8,7,1});
+            
             Assert.Equal(1, h.GetMin());
         }
     }
