@@ -63,24 +63,35 @@ namespace Utilities
 
         private void Promote(int pos)
         {
+            // Used by the Heap insert method
+            // Pos is the pos of the item inserted at the end of the heap
+            // Depending on the heap type min/max teh item may need to be promoted up the tree/heap
+
             while(pos  >1)
             {
                 if(ItemCompare(h[pos], h[(int)(pos / 2)]))
                 {
                     int tmp = h[(int)(pos / 2)];
-                    h[(int)(pos / 2)] = h[pos];
+                    h[(pos / 2)] = h[pos];
                     h[pos] = tmp;
                 }
 
-                pos = (int)(pos /2);
+                pos = (pos /2);
             }
         }
 
         private void Demote(int pos)
         {
+            // Used by the Heapify method as part of building a heap
+            //
+            // Pos is the pos of the item inserted at the end of the heap.
+            // Depending on the heap type min/max the item may need to be demoted from the node
+            // at pos to a child of the node at pos.
+
+
             while (pos*2 <= Count)
             {
-                int scp = ChildPos(pos);
+                int scp = GetChildPos(pos);
                 if(ItemCompare(h[scp], h[pos]))
                 {
                     int tmp = h[pos];
@@ -92,8 +103,11 @@ namespace Utilities
 
         }
 
-        private  int ChildPos(int pos)
+        private  int GetChildPos(int pos)
         {
+            // Returns the largest or smallest child position (depending on the virtual ItemCompare funtion)
+            //
+
             int leftPos = pos*2;
             int rightPos = pos*2+1;
 
@@ -112,6 +126,9 @@ namespace Utilities
 
         protected void Heapify()
         {
+            // Called to build a valid heap.
+            // Function works backwards though the non child nodes from bottom of the tree upwards
+            //
             // Nodes = elements in a binary tree that have at least 1 child
             // Child item in a binary tree = element with no child
             // In a binary tree represented as an array (starting at pos 1) nodes occur in positions 1 - len/2
