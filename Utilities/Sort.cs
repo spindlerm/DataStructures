@@ -6,9 +6,9 @@ namespace Utilities
     {
         public static void SelectionSort(ref int[] list)
         {
-            int comarisons;
+            int comparisons;
             int swaps; 
-            SelectionSort(ref list, out comarisons, out swaps);
+            SelectionSort(ref list, out comparisons, out swaps);
         }
         public static void SelectionSort(ref int[] list, out int _comparisons, out int _swaps)
         {
